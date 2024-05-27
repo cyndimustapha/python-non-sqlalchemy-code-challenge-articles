@@ -10,8 +10,11 @@ class Article:
             self._author = author
             self._magazine = magazine
             self._title = title
+            #adding article to author's list of articles
             author._articles.append(self)
+            #adding article to magazine's list of articles
             magazine._articles.append(self)
+            #adding article to list of all articles
             Article.all.append(self)
         else:
             raise ValueError("Titles must be of type str and between 5 and 50 characters, inclusive")
@@ -48,6 +51,7 @@ class Author:
             self._name = name
         else:
             raise ValueError("Names must be of type str and longer than 0 characters")
+        # initialize list of articles by author
         self._articles = []
 
     @property
@@ -56,6 +60,7 @@ class Author:
 
     @name.setter
     def name(self, value):
+        #ensuring name is not changeable after it is set
         if hasattr(self, '_name'):
             raise AttributeError("Cannot change name after it is set")
         if isinstance(value, str) and len(value) > 0:
@@ -90,6 +95,8 @@ class Magazine:
             self._category = category
         else:
             raise ValueError("Categories must be of type str and longer than 0 characters")
+        #initialize list of articles in magazine
+        
         self._articles = []
         Magazine.all.append(self)
 
